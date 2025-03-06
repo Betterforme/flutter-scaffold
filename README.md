@@ -1,6 +1,5 @@
 # demo
-
-A new Flutter project.
+flutter 脚手架 get dio 
 
 ## Getting Started
 
