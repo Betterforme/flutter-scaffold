@@ -1,0 +1,39 @@
+pluginManagement {
+    def flutterSdkPath = {
+        def properties = new Properties()
+        file("local.properties").withInputStream { properties.load(it) }
+        def flutterSdkPath = properties.getProperty("flutter.sdk")
+        assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+        return flutterSdkPath
+    }()
+
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+        maven { url "https://mvn.gt.getui.com/nexus/content/repositories/releases/" }
+        maven { url 'https://developer.huawei.com/repo/' }    // hms
+        maven { url "https://dl.google.com/dl/android/maven2/" }   // fcm
+        maven {
+            url 'https://maven.columbus.heytapmobi.com/repository/releases/'
+            credentials {
+                username 'nexus'
+                password 'c0b08da17e3ec36c3870fed674a0bcb36abc2e23'
+            }
+        }
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+    id "com.android.application" version "8.1.0" apply false
+    id "org.jetbrains.kotlin.android" version "1.8.22" apply false
+}
+
+include ":app"
