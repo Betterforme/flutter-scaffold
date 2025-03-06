@@ -6,7 +6,6 @@ class ApiResp {
   String errDlt;
   dynamic data;
 
-
   ApiResp.fromJson(Map<String, dynamic> map)
       : errCode = map["errCode"] ?? -1,
         errMsg = map["errMsg"] ?? '',
